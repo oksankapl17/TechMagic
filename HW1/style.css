@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.queue {
+    margin: 0 auto;
+    width: 30rem;
+    height: 45vh;
+    border: 3px solid rgb(164, 225, 253);
+    border-top: none;
+    border-bottom: none;
+    overflow: auto;
+    padding: 0.5rem;
+}
+
+#queue {
+    max-height: 44vh;
+}
+
+.queue-item {
+    min-height: 1.5rem;
+    width: 100%;
+    border: 1px solid rgb(59, 197, 254);
+    border-radius: 4px;
+    background-color: rgba(166, 234, 254, 0.4);
+    margin-top: 0.3rem;
+    padding: 0.1rem 1rem;
+}
