@@ -53,7 +53,6 @@ countUsers$.subscribe((numberOfUsers) => console.log(numberOfUsers));
 
 
 /* Task 3 **/
-
 // lets imagine that you have web application that sells cars
 // some user want to buy a car which price is less than 22000 (if its price is 22000 - it is ok for user)
 // and not older than 4 years old (if its age is 4 - it is ok for user)
