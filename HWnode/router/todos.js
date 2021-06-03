@@ -5,6 +5,9 @@ const TodoModel = require('../models/todos');
 const TodoSchema = require('../schemas/todo.schema');
 const middleware = require('../middleware/index');
 
+// Try to restructure your code in this way
+// https://www.coreycleary.me/project-structure-for-an-express-rest-api-when-there-is-no-standard-way
+
 router.get('/', async function getTodos(req, res) {
   try {
     const todos = await TodoModel.find({});
