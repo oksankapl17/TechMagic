@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types.
 const TodoModel = require('../models/todos');
 const TodoSchema = require('../schemas/todo.schema');
 const middleware = require('../middleware/index');
@@ -13,7 +14,8 @@ router.get('/', async function getTodos(req, res) {
     }
     return res.status(200).json({data: todos});
   } catch (e) {
-    return res.status(400).json({message: e && e.message})
+    // You can just pass e.message, there is no scenario we would not receive e here)
+    return res.status(400).json({message: e.message})
   }
 });
 
@@ -23,7 +25,8 @@ router.get('/:id', async function getTodo(req, res) {
     if (!id) {
  return res.status(422).json({error: 'Please provide id'}); 
 }
-    const todo = await TodoModel.find({_id: mongoose.Types.ObjectId(id)});
+//     You can extract ObjectId once
+    const todo = await TodoModel.find({_id: ObjectId(id)});
     if (!todo.length) {
       return res.status(404).json({message: 'Todo not found'});
     }
