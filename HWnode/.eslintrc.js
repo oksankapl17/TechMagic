@@ -1,7 +1,6 @@
 module.exports = {
   extends: 'eslint:recommended',
   env: {
-    browser: true,
     es6: true,
     node: true
   },
@@ -37,11 +36,7 @@ module.exports = {
     'new-parens': 'error',
     'no-nested-ternary': 'error',
     'no-unneeded-ternary': 'error',
-    quotes: [
-      'warn',
-      'single',
-      { avoidEscape: true, allowTemplateLiterals: true }
-    ],
+    quotes: ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
     'arrow-spacing': ['error', { before: true, after: true }],
     'no-useless-computed-key': 'error',
     'no-useless-constructor': 'error',

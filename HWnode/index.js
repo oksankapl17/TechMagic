@@ -1,21 +1,29 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
 const mongoose = require('mongoose');
-const todosRoutes = require('./router/todos');
+const api = require('./routes');
+const app = express();
 
 const PORT = process.env.PORT || '3000';
+const HOST = process.env.HOST || 'http://localhost';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost/my_database';
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
-mongoose.connect('mongodb://localhost/my_database', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-}).then(() => console.log('Mongo connected'));
+mongoose
+  .connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+  })
+  .then(() => console.log('Mongo connected'));
 
-const app = express();
-app.use(express.json());
+app.use(logger(NODE_ENV));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/api', api);
 
-app.use('/todos', todosRoutes);
-app.use(function (err, req, res) {
-  res.status(400).send(err);
-})
-app.listen(PORT, () => console.log('Server is ready'));
+// error-handler settings
+require('./config/error-handler')(app);
+app.listen(PORT, () => console.log(`Server is ready at: ${HOST}:${PORT}`));
